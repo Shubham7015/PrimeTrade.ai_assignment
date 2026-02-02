@@ -1,8 +1,5 @@
 const Task = require("../models/Task");
 
-// @desc    Get tasks
-// @route   GET /api/v1/tasks
-// @access  Private
 exports.getTasks = async (req, res) => {
   try {
     const { search, status } = req.query;
@@ -24,9 +21,6 @@ exports.getTasks = async (req, res) => {
   }
 };
 
-// @desc    Get single task
-// @route   GET /api/v1/tasks/:id
-// @access  Private
 exports.getTask = async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
@@ -35,7 +29,6 @@ exports.getTask = async (req, res) => {
       return res.status(404).json({ message: "Task not found" });
     }
 
-    // Make sure user owns task
     if (task.user.toString() !== req.user.id) {
       return res.status(401).json({ message: "Not authorized" });
     }
@@ -46,9 +39,6 @@ exports.getTask = async (req, res) => {
   }
 };
 
-// @desc    Create task
-// @route   POST /api/v1/tasks
-// @access  Private
 exports.createTask = async (req, res) => {
   try {
     if (!req.body.title) {
@@ -69,9 +59,6 @@ exports.createTask = async (req, res) => {
   }
 };
 
-// @desc    Update task
-// @route   PUT /api/v1/tasks/:id
-// @access  Private
 exports.updateTask = async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
@@ -80,7 +67,6 @@ exports.updateTask = async (req, res) => {
       return res.status(404).json({ message: "Task not found" });
     }
 
-    // Make sure user owns task
     if (task.user.toString() !== req.user.id) {
       return res.status(401).json({ message: "Not authorized" });
     }
@@ -95,9 +81,6 @@ exports.updateTask = async (req, res) => {
   }
 };
 
-// @desc    Delete task
-// @route   DELETE /api/v1/tasks/:id
-// @access  Private
 exports.deleteTask = async (req, res) => {
   try {
     const task = await Task.findById(req.params.id);
@@ -106,7 +89,6 @@ exports.deleteTask = async (req, res) => {
       return res.status(404).json({ message: "Task not found" });
     }
 
-    // Make sure user owns task
     if (task.user.toString() !== req.user.id) {
       return res.status(401).json({ message: "Not authorized" });
     }
