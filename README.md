@@ -37,7 +37,8 @@ The project is set up to run both frontend and backend from the root directory u
 ```bash
 # Clone the repository
 git clone https://github.com/Shubham7015/PrimeTrade.ai_assignment
-cd assignment
+
+cd PrimeTrade.ai_assignment
 
 # Install Root Dependencies
 npm install
@@ -114,5 +115,6 @@ To scale this application for a production environment like AWS/GCP, I would imp
 2.  **Database**: Migrate to MongoDB Atlas (Replica Sets) for high availability. Implement Indexing on frequently queried fields (user.\_id, status) and use Redis for caching frequent read operations (e.g., getting user profile).
 3.  **Security**: Move `JWT_SECRET` and DB Credentials to a secret manager (AWS Secrets Manager). Tighten CORS policies to allow only the production frontend domain. Set up Rate Limiting (express-rate-limit) to prevent abuse.
 4.  **Load Balancing**: Use a Load Balancer (valid SSL/TLS) to distribute traffic across multiple backend instances.
+
 
 
